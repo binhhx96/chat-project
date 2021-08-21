@@ -18,9 +18,11 @@ export default function AuthProvider({children}) {
                 setUser(displayName, email, uid, photoURL);
                 setisLoading(false);
                 history.push("/");
-            } else {
-                history.push("/login");
+                return;
             }
+
+            setisLoading(false);
+            history.push("/login");
         })
 
         // clean function
