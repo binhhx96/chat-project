@@ -15,7 +15,7 @@ export default function AuthProvider({children}) {
         const unsubcribed = auth.onAuthStateChanged((user) => {
             if (user) {
                 const {displayName, email, uid, photoURL} = user;
-                setUser(displayName, email, uid, photoURL);
+                setUser({displayName, email, uid, photoURL});
                 setisLoading(false);
                 history.push("/");
                 return;
@@ -33,7 +33,7 @@ export default function AuthProvider({children}) {
 
     return (
         <div>
-            <AuthContext.Provider value={user}>
+            <AuthContext.Provider value={{user}}>
                 {isLoading ? <Spin /> : children}
             </AuthContext.Provider>            
         </div>

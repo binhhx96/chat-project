@@ -5,6 +5,6 @@ export const addDocument = (collection, data) => {
 
     query.add({
         ...data, 
-        createdAt: firebase.firestore.fieldValue.serverTimestamp()
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
     })
 }
