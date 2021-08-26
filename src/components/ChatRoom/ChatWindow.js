@@ -4,6 +4,7 @@ import {Button, Avatar, Tooltip, Input, Form, Alert} from 'antd';
 import {UserAddOutlined} from '@ant-design/icons';
 import Message from './Message';
 import { AppContext } from '../../Context/AppProvider';
+import { toUpper } from 'lodash';
 
 const HeaderStyled = styled.div`
     display: flex;
@@ -69,13 +70,12 @@ const MessageListStyled = styled.div`
 
 //type buton = text de khong co border ben ngoai
 export default function ChatWindow() {
-    const {rooms, selectedRoomId} = React.useContext(AppContext);
-    const selectedRoom = React.useMemo(() => rooms.find(room => room.id === selectedRoomId), [rooms, selectedRoomId]);
+    const {selectedRoom, members, setIsInviteMemberVisible} = React.useContext(AppContext);
 
     return (
         <WapperStyled>
             {
-                selectedRoomId && selectedRoom ? (
+                selectedRoom ? (
                     <>
                         <HeaderStyled>
                             <div className="header__info">
@@ -83,17 +83,11 @@ export default function ChatWindow() {
                                 <span className="header__description">{selectedRoom.description}</span>
                             </div>
                             <ButtonGroupStyled>
-                                <Button type="text" icon={<UserAddOutlined />}>Moi</Button>
+                                <Button type="text" icon={<UserAddOutlined onClick={() => setIsInviteMemberVisible(true)}/>}>Mời</Button>
                                 <Avatar.Group size="small" maxCount={2}>
-                                    <Tooltip title="A">
-                                        <Avatar>A</Avatar>
-                                    </Tooltip>
-                                    <Tooltip title="B">
-                                        <Avatar>B</Avatar>
-                                    </Tooltip>
-                                    <Tooltip title="C">
-                                        <Avatar>C</Avatar>
-                                    </Tooltip>
+                                    {
+                                        members.map(member => <Tooltip title={member.displayName} key={member.id}><Avatar src={member.photoURL}>{member.photoURL ? '' : member.displayName?.charAt(0)?.toUpperCase()}</Avatar></Tooltip>)
+                                    }
                                 </Avatar.Group>
                             </ButtonGroupStyled>
                         </HeaderStyled>

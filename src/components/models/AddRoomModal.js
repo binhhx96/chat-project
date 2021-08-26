@@ -29,7 +29,7 @@ export default function AddRoomModal() {
                 onOk={handleOk}
                 onCancel={handleCancel}
             >
-                <Form form={form}>
+                <Form form={form} layout="vertical">
                     <Form.Item label="Tên phòng" name='name'>
                         <Input placeholder="Nhập tên phòng"></Input>
                     </Form.Item>
