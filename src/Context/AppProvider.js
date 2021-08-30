@@ -27,9 +27,9 @@ export default function AppProvider({children}) {
         return {
             fieldName: 'uid',
             operator: 'in',
-            compareValue: selectedRoom ? selectedRoom.members : [],
+            compareValue: selectedRoom?.members,
         }
-    }, [selectedRoom]);
+    }, [selectedRoom?.members]);
 
     const members = useFirestore('users', membersConditions);
 
