@@ -113,7 +113,7 @@ export default function ChatWindow() {
                                 <span className="header__description">{selectedRoom.description}</span>
                             </div>
                             <ButtonGroupStyled>
-                                <Button type="text" icon={<UserAddOutlined onClick={() => setIsInviteMemberVisible(true)}/>}>Mời</Button>
+                                <Button type="text" icon={<UserAddOutlined />} onClick={() => setIsInviteMemberVisible(true)}>Mời</Button>
                                 <Avatar.Group size="small" maxCount={2}>
                                     {
                                         members.map(member => <Tooltip title={member.displayName} key={member.id}><Avatar src={member.photoURL}>{member.photoURL ? '' : member.displayName?.charAt(0)?.toUpperCase()}</Avatar></Tooltip>)
